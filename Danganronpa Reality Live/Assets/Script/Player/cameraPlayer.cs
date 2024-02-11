@@ -23,11 +23,11 @@ public class cameraPlayer : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
 
         shakePos = transform.position;
 
-        _freezePlayerComponent = GetComponent<cameraPlayer>().transform.parent.GetComponent<FreezePlayer>();
+        _freezePlayerComponent = gameObject.GetComponent<cameraPlayer>().transform.parent.GetComponent<FreezePlayer>();
 
         if (_freezePlayerComponent != null) { 
             _freezePlayerComponent.ToRotate += CameraRotate;
@@ -54,5 +54,9 @@ public class cameraPlayer : MonoBehaviour
         shakePos = transform.position;
         shakeRotation.x = Mathf.Sin(shakeDistation * speedShake) * shakeAmount;
         transform.localEulerAngles += shakeRotation;
+    }
+
+    public void CameraToLookAsPoint(Transform point)
+    {
     }
 }

@@ -1,15 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RayCast_Player : MonoBehaviour
 {
-    public Selectable CurrentSelectable;
+    private Selectable CurrentSelectable;
 
-    void Update()
+    private void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        CreateRayCast();
+    }
+
+    private void CreateRayCast()
+    {
         Debug.DrawRay(transform.position, transform.forward * 10, Color.yellow);
+
+        Ray ray = new(transform.position, transform.forward);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10))
@@ -24,6 +28,7 @@ public class RayCast_Player : MonoBehaviour
                 }
                 CurrentSelectable = selectable;
                 selectable.SelectObject();
+
             }
             else
             {
@@ -42,6 +47,5 @@ public class RayCast_Player : MonoBehaviour
                 CurrentSelectable = null;
             }
         }
-
     }
 }

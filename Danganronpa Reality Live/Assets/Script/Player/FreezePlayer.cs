@@ -6,7 +6,7 @@ public class FreezePlayer : MonoBehaviour
     public event Action ToMove;
     public event Action ToRotate;
 
-    public bool IsFreeze = false;
+    private bool _isFreeze = false;
 
     private void Update()
     {
@@ -15,12 +15,12 @@ public class FreezePlayer : MonoBehaviour
 
     private void Freeze()
     {
-        if (!IsFreeze && Input.GetKeyDown(KeyCode.F))
-            IsFreeze = true;
-        else if (IsFreeze && Input.GetKeyDown(KeyCode.G))
-            IsFreeze = false;
+        if (!_isFreeze) { ToMove?.Invoke(); }
+        if (!_isFreeze) { ToRotate?.Invoke(); }
+    }
 
-        if (!IsFreeze) { ToMove?.Invoke(); }
-        if (!IsFreeze) { ToRotate?.Invoke(); }
+    public void SetFreeze(bool active)
+    {
+        _isFreeze = active;
     }
 }

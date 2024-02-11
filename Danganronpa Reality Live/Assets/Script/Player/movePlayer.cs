@@ -10,7 +10,7 @@ public class movePlayer : MonoBehaviour
     private Vector3 moveDirection;
     private CharacterController player;
     private FreezePlayer _freezePlayerComponent;
-
+    
     private void Start()
     {
         player = GetComponent<CharacterController>();
